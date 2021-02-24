@@ -2,7 +2,7 @@
 This file is responsible for routing requests to the appropriate handlers
 """
 
-from .init_app import app
+from app.init_app import app
 
 
 @app.route('/')
