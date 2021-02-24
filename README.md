@@ -1,2 +1,2 @@
 # et3-task
-web application for employees to submit requests for leave
+Simple web application for employees to submit requests for leave and and for managers to approve/decline the requests.
