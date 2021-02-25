@@ -6,6 +6,7 @@ from app.init_app import db, app, ma
 from sqlalchemy import ForeignKey, DateTime
 from sqlalchemy.engine import Engine
 from sqlalchemy import event
+from werkzeug.security import generate_password_hash, check_password_hash
 
 
 # Enabling foreign keys, sometimes it set to be OFF by default
@@ -28,11 +29,18 @@ class User(db.Model):
     
     id = db.Column(db.Integer, unique=True, index=True, nullable=False, primary_key=True)
     email = db.Column(db.String(120), nullable=False, unique=True)
-    password = db.Column(db.String(120), nullable=False)
-    user_type = db.Column(db.Integer)   # 0 -> normal user, 1 -> admin
+    name = db.Column(db.String(120), nullable=False)
+    password_hash = db.Column(db.String(120), nullable=False)
+    type = db.Column(db.Integer)   # 0 -> normal user, 1 -> admin
+
+    def set_password(self, password):
+        self.password_hash = generate_password_hash(password)
+
+    def check_password(self, password):
+        return check_password_hash(self.password_hash, password)
 
     def __repr__(self):     
-        return '<User: id: {0}, email: {1}, password: {2}>'.format(self.id, self.email, self.name)
+        return '<User: id: {0}, email: {1}>'.format(self.id, self.email)
 
 
 class Employee(db.Model):
@@ -42,10 +50,9 @@ class Employee(db.Model):
 
     __tablename__ = "employee"
     
-    id = db.Column(db.Integer, ForeignKey(User.id), index=True, primary_key=True)
-    email = db.Column(db.String(120), nullable=False, unique=True)
-    name = db.Column(db.String(120), nullable=False)
-    manager_id = db.Column(db.Integer, ForeignKey(User.id), index=True, primary_key=True)
+    id = db.Column(db.Integer, ForeignKey(User.id, ondelete='CASCADE'), index=True, primary_key=True)
+    email = db.Column(db.String(120), ForeignKey(User.email, ondelete='CASCADE'), nullable=False, unique=True)
+    manager_id = db.Column(db.Integer, ForeignKey(User.id, ondelete='CASCADE'), index=True, primary_key=True)
 
     def __repr__(self):     
         return '<employee: id: {0}, manager_id: {1}>'.format(self.id, self.manager_id)
@@ -57,9 +64,12 @@ class LeaveRequest(db.Model):
 
     __tablename__ = "leave_request"
     
-    id = db.Column(db.Integer, ForeignKey(User.id), index=True, primary_key=True)
-    manager_id = db.Column(db.Integer, ForeignKey(User.id), index=True, primary_key=True)
-    leave_date = db.Column(DateTime, nullable=False)
+    id = db.Column(db.Integer, unique=True, index=True, nullable=False, primary_key=True)
+    employee_id = db.Column(db.Integer, ForeignKey(User.id, ondelete='CASCADE'), nullable=False)
+    manager_id = db.Column(db.Integer, ForeignKey(User.id, ondelete='CASCADE'), nullable=False)
+    reason = db.Column(db.String(120), nullable=False)
+    request_date = db.Column(DateTime, nullable=False)
+    status = db.Column(db.Integer, nullable=False)  # 0 -> unanswered, 1 -> action took
 
     def __repr__(self):     
         return '<employee: id: {0}, manager_id: {1}>'.format(self.id, self.manager_id)
