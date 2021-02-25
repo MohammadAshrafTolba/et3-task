@@ -1,4 +1,4 @@
-from app.init_app import app
+from app.init_app import app, models
 
 
 app.run(debug=True)
