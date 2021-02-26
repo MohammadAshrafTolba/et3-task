@@ -51,7 +51,7 @@ class EmployeeHandler:
 
         return id in self.get_all_managers()
 
-    def get_employee_managers(self, id):
+    def get_employee_manager(self, id):
         """
         brief        : gets specific employee's managers
         param        : id -- int -- employee's unique id
@@ -60,16 +60,12 @@ class EmployeeHandler:
         return       : list of IDs of managers of a specific employee
         """
 
-        res = db.session.query(Employee.manager_id).filter(Employee.id==id).all() or None
+        manager_id = db.session.query(Employee.manager_id).filter(Employee.id==id).first() or None
 
-        if res is None:
+        if manager_id is None:
             return None
         
-        managers_ids = []
-        for res_tuple in res:
-            managers_ids.append(res_tuple[0])
-        
-        return managers_ids
+        return manager_id[0]
 
     def get_manager_employees(self, id):
         """

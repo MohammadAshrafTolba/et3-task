@@ -69,7 +69,16 @@ class LeaveRequest(db.Model):
     manager_id = db.Column(db.Integer, ForeignKey(User.id, ondelete='CASCADE'), nullable=False)
     reason = db.Column(db.String(120), nullable=False)
     request_date = db.Column(DateTime, nullable=False)
-    status = db.Column(db.Integer, nullable=False)  # 0 -> unanswered, 1 -> action took
+    status = db.Column(db.Integer, nullable=False)  # 0 -> unanswered, 1 -> Declined, 2 -> Approved
 
     def __repr__(self):     
         return '<employee: id: {0}, manager_id: {1}>'.format(self.id, self.manager_id)
+
+
+#------------------------------------------------------------------------------
+# The following is to map result queries to json later using flask_marshamallow
+#------------------------------------------------------------------------------
+
+class LeaveRequestSchema(ma.SQLAlchemyAutoSchema):
+    class Meta:
+        model = LeaveRequest

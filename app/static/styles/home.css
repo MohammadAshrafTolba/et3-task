@@ -1,0 +1,67 @@
+@import url('./base.css');
+
+.content {
+    margin: 4% 20%;
+    padding: 1rem;
+    background-color: var(--background-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+    border-radius: 0.05em;
+}
+
+.title, h3, label {
+    font-style: normal;
+    font-size: 1.5rem;
+}
+
+.form-control {
+    display: block;
+    width: 50%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 2;
+    border-color: var(--primary-color);
+    border-style: solid !important;
+    border-width: 0 0 1px 0 !important;
+    color: var(--primary-color);
+    height: auto;
+    border-radius: 0;
+    background-clip: padding-box;
+}
+
+.form-control:focus {
+    color: var(--primary-color);
+    outline: 0;
+    box-shadow: none;
+}
+
+.btn-class {
+    background-color: var(--background-color);
+    border-radius: 0;
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+    margin: auto;
+}
+
+.btn-class:hover {
+    color: var(--background-color);
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--secondary-color);
+}
+
+nav {
+    height: 50px;
+    background-color: var(--primary-color);
+}
+
+a {
+    color: var(--secondary-color);
+}
+
+a:hover {
+    color: white;
+}
+

@@ -17,6 +17,35 @@ class UserHandler:
         users = db.session.query(User).all() or None
         return users
 
+    def get_user_id_by_email(self, email):
+        """
+        brief        : gets specific user id by email 
+        param        : email -- string -- unique user email
+        constraint   : none
+        throws       : none
+        return       : user_id -- int
+                       None -- if no user found
+        """
+
+        user_id = db.session.query(User).filter(User.email==email).first() or None
+        return user_id
+
+    def check_credentials(self, email, password):
+        """
+        brief        : checks user's credentials to log in 
+        param        : email -- string -- unique user email
+                       password -- string -- user's password
+        constraint   : none
+        throws       : none
+        return       : True, user -- if credentials are correct
+                       False, None -- otherwise
+        """
+
+        user = db.session.query(User).filter(User.email==email).first() or None
+        if user is not None and user.check_password(password):
+            return True, user
+        return False, None
+
     def get_user_by_id(self, id):
         """
         brief        : gets specific user by id
