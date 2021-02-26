@@ -19,6 +19,15 @@ Simple web application for employees to submit requests for leave and and for ma
 </ol>
 **<em>You can run the server without the first step but it is better to populate db with new requests to approve/decline them</em>**
 
+## Current users (for testing pyrposes)
+| Employee ID | Employee Name | Employee Email | Password | Manager ID |
+| --- | --- | --- | --- | --- |
+1 | Ahmed | employee1@example.com | pass123 | 3 |
+2 | Aly | employee2@example.com | 123pass | 1 |
+3 | Mohamed | employee3@example.com | pass123 | none |
+4 | Ashraf | employee4@example.com | 123pass | 1 |
+5 | Ibrahim | employee5@example.com | 123pass | 3 |
+
 ## Assumptions
 - No normal registration scenario, only admins register accounts
 - Each employee have only one direct manager, managers would manage multiple employees ofcourse
