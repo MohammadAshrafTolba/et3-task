@@ -1,6 +1,12 @@
 # et3-task
 Simple web application for employees to submit requests for leave and and for managers to approve/decline the requests.
 
+## Website snippets
+![Arch Diagram of website](/documentation/login.png)
+![Arch Diagram of website](/documentation/incoming_requests.png)
+![Arch Diagram of website](/documentation/past_requests.png)
+![Arch Diagram of website](/documentation/home.png)
+
 ## Tech used
 - Frontend: HTML / CSS / Bootstrap4 / JS
 - Backend: Flask / SQLAlchemy as ORM / sqlite3
