@@ -13,10 +13,15 @@ Simple web application for employees to submit requests for leave and and for ma
 - Different packages used are mentioned in the requirements.txt file
   
 ## How to run
-<ol>
-<li>Populate db: ``python -m app.populate_db``</li>
-<li>Run server: ``python app_runner.py``</li>
-</ol>
+1. populate db:
+```bash 
+python -m app.populate_db
+```
+
+2. Run Server: 
+```bash 
+python app_runner.py
+```
 **<em>You can run the server without the first step but it is better to populate db with new requests to approve/decline them</em>**
 
 ## Current users (for testing pyrposes)
@@ -36,6 +41,7 @@ Simple web application for employees to submit requests for leave and and for ma
 - A manager would approve/decline incoming leave requests
   
 ## Features
+- Migration repo for db (for safe upgrading and downgrading db)
 - passwords' hash are being stored in the db instead of actual passwords
 - User Sessions and db are secure by generating safe APP_KEY (in the config)
 - Some routes won't work if accessed without logging in
