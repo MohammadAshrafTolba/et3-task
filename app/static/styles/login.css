@@ -1,0 +1,49 @@
+@import url('./base.css');
+
+.content {
+    margin: 8%;
+    padding: 4rem 1rem 4rem 1rem;
+    background-color: var(--primary-color);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+}
+
+.signin-text {
+    font-style: normal;
+    font-weight: 600 !important;
+}
+
+.form-control {
+    display: block;
+    width: 100%;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    border-color: var(--primary-color);
+    border-style: solid !important;
+    border-width: 0 0 1px 0 !important;
+    color: var(--primary-color);
+    height: auto;
+    border-radius: 0;
+    background-clip: padding-box;
+}
+
+.form-control:focus {
+    color: var(--primary-color);
+    outline: 0;
+    box-shadow: none;
+}
+
+label, h3 {
+    color: var(--secondary-color);
+}
+
+.btn-class {
+    background-color: var(--primary-color);
+    border-radius: 0;
+    border-color: var(--secondary-color);
+    color: var(--secondary-color);
+}
+
+.btn-class:hover {
+    background-color: var(--primary-color);
+}
