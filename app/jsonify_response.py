@@ -1,10 +1,6 @@
-from flask.globals import request
 from app.models import LeaveRequestSchema as lr_schema
 from app.handlers.user_handler import UserHandler
-from datetime import datetime
 from flask import jsonify
-from sqlalchemy import extract
-import json
 
 
 def leave_requests_jsonify(leave_requests):

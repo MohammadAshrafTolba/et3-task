@@ -15,7 +15,7 @@ from functools import wraps
 def login_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
-        if not session['logged_in']:
+        if 'logged_in' not in session or not session['logged_in']:
             return redirect('/login')
         return f(*args, **kwargs)
     return decorated_function
@@ -94,19 +94,15 @@ def past_leave_requsts_page():
 @app.route('/send_request', methods=['POST'])
 @login_required
 def send_request():
-    print('here2')
     leave_reason = request.form.get('leave_reason')
     employee_id = session['user_id']
-    print(employee_id)
     e_handler = EmployeeHandler()
     manager_id = e_handler.get_employee_manager(employee_id)
-    print(manager_id)
     if manager_id is None:
-        return jsonify({'status': False})
+        return jsonify({'status': 'false'})
     lr_handler = LeaveRequestHandler()
     status = lr_handler.add_request(employee_id, manager_id, leave_reason)
-    print('here4')
-    return jsonify({'status': status})
+    return jsonify({'status': 'true'})
 
 @app.route('/logout')
 @login_required
