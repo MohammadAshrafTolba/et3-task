@@ -13,12 +13,17 @@ Simple web application for employees to submit requests for leave and and for ma
 - Different packages used are mentioned in the requirements.txt file
   
 ## How to run
-1. populate db:
+1. Install requirements:
+```bash 
+pip install -r requirements.txt
+```
+
+2. Populate db:
 ```bash 
 python -m app.populate_db
 ```
 
-2. Run Server: 
+3. Run Server: 
 ```bash 
 python app_runner.py
 ```
